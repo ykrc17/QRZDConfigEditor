@@ -35,3 +35,16 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.1.1'
 }
+
+tasks.whenTaskAdded {
+    if (it.name == 'assembleRelease') {
+        it.doLast {
+            copy {
+                filter { it.endsWith('.apk') }
+                rename { 'qrzd-config-editor.apk' }
+                from "$buildDir/outputs/apk/release"
+                into rootProject.file('release')
+            }
+        }
+    }
+}

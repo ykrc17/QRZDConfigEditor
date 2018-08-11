@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fafafa"
     android:orientation="vertical"
     android:padding="15dp"
     tools:context=".MainActivity">
@@ -12,14 +13,17 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="高帧率模式" />
+            android:layout_weight="1"
+            android:text="高帧率模式"
+            android:textColor="#4a5050" />
 
         <CheckBox
             android:id="@+id/cb_frame_rate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3" />
 
     </LinearLayout>
 
@@ -28,15 +32,19 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="登录CG" />
+            android:layout_weight="1"
+            android:text="登录CG"
+            android:textColor="#4a5050" />
 
         <EditText
             android:id="@+id/et_ending"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:layout_weight="3"
+            android:inputType="number"
+            android:textColor="#4a5050" />
 
     </LinearLayout>
 

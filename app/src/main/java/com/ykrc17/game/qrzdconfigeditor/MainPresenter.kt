@@ -17,6 +17,5 @@ class MainPresenter(private val view: MainView) {
     fun writeConfig(updateConfig: (QRZDConfig) -> Unit) {
         updateConfig(config)
         editor.writeConfig(config)
-        readConfig()
     }
 }

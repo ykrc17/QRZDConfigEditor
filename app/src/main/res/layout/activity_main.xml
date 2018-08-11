@@ -23,6 +23,23 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="登录CG" />
+
+        <EditText
+            android:id="@+id/et_ending"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/tv_debug"
         android:layout_width="wrap_content"

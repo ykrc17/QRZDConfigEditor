@@ -40,9 +40,10 @@ tasks.whenTaskAdded {
     if (it.name == 'assembleRelease') {
         it.doLast {
             copy {
-                filter { it.endsWith('.apk') }
-                rename { 'qrzd-config-editor.apk' }
-                from "$buildDir/outputs/apk/release"
+                from("$buildDir/outputs/apk/release") {
+                    include '*.apk'
+                    rename('app-release', 'qrzd-config-editor')
+                }
                 into rootProject.file('release')
             }
         }

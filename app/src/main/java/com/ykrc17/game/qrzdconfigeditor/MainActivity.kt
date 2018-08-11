@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity(), MainView {
         if (grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
             presenter.readConfig()
         } else {
-            Toast.makeText(this, "读写权限被拒绝", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "你竟敢拒绝艾露比大人", Toast.LENGTH_SHORT).show()
             finish()
         }
     }

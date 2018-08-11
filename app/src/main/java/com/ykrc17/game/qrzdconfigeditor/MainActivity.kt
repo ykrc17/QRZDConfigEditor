@@ -41,7 +41,9 @@ class MainActivity : AppCompatActivity(), MainView {
             }
         }
 
-        debugText.text = config.originString
+        if (BuildConfig.DEBUG) {
+            debugText.text = config.originString
+        }
     }
 
     private fun requestPermissions(success: () -> Unit) {

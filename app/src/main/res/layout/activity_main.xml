@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#fafafa"
     android:orientation="vertical"
-    android:padding="15dp"
+    android:padding="12dp"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -47,6 +47,12 @@
             android:textColor="#4a5050" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_cg_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CG列表" />
 
     <TextView
         android:id="@+id/tv_debug"

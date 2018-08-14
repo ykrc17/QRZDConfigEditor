@@ -1,6 +1,7 @@
 package com.ykrc17.game.qrzdconfigeditor
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.*
 import com.ykrc17.game.qrzdconfigeditor.config.QRZDConfig
 import java.util.*
@@ -27,6 +29,9 @@ class MainActivity : AppCompatActivity(), MainView {
 
         presenter = MainPresenter(this)
         requestPermissions(presenter::readConfig)
+        findViewById<View>(R.id.btn_cg_list).setOnClickListener {
+            startActivity(Intent(this, CGListActivity::class.java))
+        }
     }
 
     private fun bindView() {

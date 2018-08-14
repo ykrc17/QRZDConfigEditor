@@ -47,6 +47,12 @@ tasks.whenTaskAdded {
                 }
                 into rootProject.file('release')
             }
+            copy {
+                from('src/main/assets') {
+                    include '*.md'
+                }
+                into rootProject.rootDir
+            }
         }
     }
 }

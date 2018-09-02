@@ -6,7 +6,8 @@
     android:background="#fafafa"
     android:orientation="vertical"
     android:padding="12dp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:package="com.ykrc17.game.qrzdconfigeditor.layout">
 
     <LinearLayout
         android:layout_width="match_parent"

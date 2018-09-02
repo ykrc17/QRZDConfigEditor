@@ -12,20 +12,18 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import com.ykrc17.game.qrzdconfigeditor.config.QRZDConfig
+import com.ykrc17.game.qrzdconfigeditor.layout.ActivityMainBinding
 import java.util.*
 
 class MainActivity : AppCompatActivity(), MainView {
 
     lateinit var presenter: MainPresenter
-    lateinit var frameRate: CheckBox
-    lateinit var ending: EditText
-
-    lateinit var debugText: TextView
+    lateinit var bindings: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        bindView()
+        bindings = ActivityMainBinding(window.decorView)
 
         presenter = MainPresenter(this)
         requestPermissions(presenter::readConfig)
@@ -34,13 +32,7 @@ class MainActivity : AppCompatActivity(), MainView {
         }
     }
 
-    private fun bindView() {
-        frameRate = findViewById(R.id.cb_frame_rate)
-        ending = findViewById(R.id.et_ending)
-        debugText = findViewById(R.id.tv_debug)
-    }
-
-    var endingListener = object : TextWatcher {
+    private var endingListener = object : TextWatcher {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             if (!s.isNullOrEmpty()) {
                 presenter.writeConfig { it.ending = s.toString().toInt() }
@@ -55,16 +47,18 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun showConfig(config: QRZDConfig) {
-        frameRate.setChecked(config.isHighFrame)
-        frameRate.setOnCheckedChangeListener { _: CompoundButton, isChecked: Boolean ->
-            presenter.writeConfig { it.isHighFrame = isChecked }
-        }
-        ending.removeTextChangedListener(endingListener)
-        ending.setText(config.ending.toString())
-        ending.addTextChangedListener(endingListener)
+        bindings.apply {
+            cb_frame_rate.setChecked(config.isHighFrame)
+            cb_frame_rate.setOnCheckedChangeListener { _: CompoundButton, isChecked: Boolean ->
+                presenter.writeConfig { it.isHighFrame = isChecked }
+            }
+            et_ending.removeTextChangedListener(endingListener)
+            et_ending.setText(config.ending.toString())
+            et_ending.addTextChangedListener(endingListener)
 
-        if (BuildConfig.DEBUG) {
-            debugText.text = config.originString
+            if (BuildConfig.DEBUG) {
+                tv_debug.text = config.originString
+            }
         }
     }
 

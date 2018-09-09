@@ -9,6 +9,7 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+        resConfigs "xxhdpi", "ldltr", "appliance"
     }
     signingConfigs {
         release {//发布版本的签名配置

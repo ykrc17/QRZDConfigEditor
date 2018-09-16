@@ -1,5 +1,5 @@
 package com.ykrc17.game.qrzdconfigeditor.adapter
 
-class CGEntity(val id: String, val name: String) {
+class CGEntity(var id: String, var name: String) {
 
 }

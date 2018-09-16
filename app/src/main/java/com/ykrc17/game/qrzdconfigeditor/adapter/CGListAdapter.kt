@@ -17,12 +17,14 @@ class CGListAdapter : ListAdapter<CGViewModel, CGEntity> {
         return CGViewModel(view, listener)
     }
 
-    fun indexOf(id: String?): Int {
+    fun setSelectedItem(id: String?): Int {
         if (id == null) {
             return -1
         }
         list.forEachIndexed { index, entity ->
             if (entity.id == id) {
+                entity.name += "√"
+                notifyItemChanged(index)
                 return index
             }
         }

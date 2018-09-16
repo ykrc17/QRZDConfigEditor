@@ -43,6 +43,6 @@ class CGListActivity : BaseActivity() {
 
     private fun showCGList(entity: List<CGEntity>) {
         adapter.setAll(entity)
-        recyclerView.scrollToPosition(adapter.indexOf(intent.getStringExtra("id")))
+        recyclerView.scrollToPosition(adapter.setSelectedItem(intent.getStringExtra("id")))
     }
 }

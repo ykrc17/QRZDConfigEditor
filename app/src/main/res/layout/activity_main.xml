@@ -9,6 +9,25 @@
     tools:context=".MainActivity"
     tools:package=".layout">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_erubi"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/erubi" />
+
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="@android:color/darker_gray" />
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -50,11 +69,28 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_go_cg_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="从CG列表选择" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_go_cg_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="从CG列表选择" />
+
+        <Button
+            android:id="@+id/btn_decrement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-" />
+
+        <Button
+            android:id="@+id/btn_increment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_debug"

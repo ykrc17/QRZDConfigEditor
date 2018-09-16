@@ -1,6 +1,7 @@
 package com.ykrc17.game.qrzdconfigeditor
 
 import android.Manifest
+import android.animation.ValueAnimator
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -25,6 +26,8 @@ class MainActivity : BaseActivity(), MainView {
 
         presenter = MainPresenter(this)
         requestPermissions(presenter::readConfig)
+
+        bindings.tv_version.text = "Version: " + BuildConfig.VERSION_NAME
     }
 
     private var endingListener = object : TextWatcher {
@@ -49,6 +52,16 @@ class MainActivity : BaseActivity(), MainView {
 
     override fun showConfig(config: QRZDConfig) {
         bindings.apply {
+            ValueAnimator.ofFloat(-30f, 30f).apply {
+                duration = 1000
+                repeatCount = ValueAnimator.INFINITE
+                repeatMode = ValueAnimator.REVERSE
+                addUpdateListener {
+                    iv_erubi.rotation = it.animatedValue as Float
+                }
+                start()
+            }
+
             cb_frame_rate.setChecked(config.isHighFrame)
             cb_frame_rate.setOnCheckedChangeListener { _: CompoundButton, isChecked: Boolean ->
                 presenter.writeConfig { it.isHighFrame = isChecked }
@@ -61,6 +74,14 @@ class MainActivity : BaseActivity(), MainView {
                 val args = Bundle()
                 args.putString("id", et_ending.text.toString())
                 startActivityForResult(CGListActivity::class.java, args, ::onSelectCG)
+            }
+
+            btn_decrement.setOnClickListener {
+                et_ending.setText((et_ending.text.toString().toInt() - 1).toString())
+            }
+
+            btn_increment.setOnClickListener {
+                et_ending.setText((et_ending.text.toString().toInt() + 1).toString())
             }
 
             if (BuildConfig.DEBUG) {

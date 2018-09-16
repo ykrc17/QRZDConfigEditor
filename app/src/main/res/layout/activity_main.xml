@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="12dp"
     tools:context=".MainActivity"
-    tools:package="com.ykrc17.game.qrzdconfigeditor.layout">
+    tools:package=".layout">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,6 +29,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_ending"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -48,12 +49,6 @@
             android:textColor="#4a5050" />
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_cg_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CG列表" />
 
     <TextView
         android:id="@+id/tv_debug"

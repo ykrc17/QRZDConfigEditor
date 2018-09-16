@@ -15,7 +15,7 @@ import com.ykrc17.game.qrzdconfigeditor.config.QRZDConfig
 import com.ykrc17.game.qrzdconfigeditor.layout.ActivityMainBinding
 import java.util.*
 
-class MainActivity : AppCompatActivity(), MainView {
+class MainActivity : BaseActivity(), MainView {
 
     lateinit var presenter: MainPresenter
     lateinit var bindings: ActivityMainBinding
@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity(), MainView {
 
         presenter = MainPresenter(this)
         requestPermissions(presenter::readConfig)
-        findViewById<View>(R.id.btn_cg_list).setOnClickListener {
-            startActivity(Intent(this, CGListActivity::class.java))
+        bindings.ll_ending.setOnClickListener {
+            startActivityForResult(CGListActivity::class.java, null, ::onSelectCG)
         }
     }
 
@@ -43,6 +43,12 @@ class MainActivity : AppCompatActivity(), MainView {
         }
 
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+    }
+
+    private fun onSelectCG(result: Bundle?) {
+        result?.getString("id")?.also {
+            bindings.et_ending.setText(it)
         }
     }
 

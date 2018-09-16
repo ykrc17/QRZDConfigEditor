@@ -1,5 +1,5 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
 
 android {
     compileSdkVersion 27
@@ -13,10 +13,10 @@ android {
     }
     signingConfigs {
         release {//发布版本的签名配置
-            storeFile file('keystore.jks')
-            keyAlias 'key0'
-            storePassword '123456'
-            keyPassword '123456'
+            storeFile file("keystore.jks")
+            keyAlias "key0"
+            storePassword "123456"
+            keyPassword "123456"
         }
     }
     buildTypes {
@@ -27,30 +27,33 @@ android {
             debuggable false
             signingConfig signingConfigs.release
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    def implLibs = [fileTree(include: ["*.jar"], dir: "libs"),
+                    "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+                    "com.android.support:appcompat-v7:27.1.1",
+                    "com.android.support:recyclerview-v7:27.1.1",
+    ]
+    implementation implLibs
 }
 
 tasks.whenTaskAdded {
-    if (it.name == 'assembleRelease') {
+    if (it.name == "assembleRelease") {
         it.doLast {
             copy {
                 from("$buildDir/outputs/apk/release") {
-                    include '*.apk'
-                    rename('app-release', 'qrzd-config-editor')
+                    include "*.apk"
+                    rename("app-release", "qrzd-config-editor")
                 }
-                into rootProject.file('release')
+                into rootProject.file("release")
             }
             copy {
-                from('src/main/assets') {
-                    include '*.md'
+                from("src/main/assets") {
+                    include "*.json"
                 }
                 into rootProject.rootDir
             }

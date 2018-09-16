@@ -1,17 +1,14 @@
 package com.ykrc17.game.qrzdconfigeditor
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import com.ykrc17.game.qrzdconfigeditor.adapter.CGEntity
 import com.ykrc17.game.qrzdconfigeditor.adapter.CGListAdapter
 import com.ykrc17.game.qrzdconfigeditor.adapter.OnClickItemListener
 import com.ykrc17.game.qrzdconfigeditor.thread.AsyncParseJsonCall
 import com.ykrc17.game.qrzdconfigeditor.thread.AsyncReadJsonCall
 import com.ykrc17.game.qrzdconfigeditor.thread.MainThreadConsumer
-import com.ykrc17.util.function.Consumer
 
 class CGListActivity : BaseActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -46,5 +43,6 @@ class CGListActivity : BaseActivity() {
 
     private fun showCGList(entity: List<CGEntity>) {
         adapter.setAll(entity)
+        recyclerView.scrollToPosition(adapter.indexOf(intent.getStringExtra("id")))
     }
 }

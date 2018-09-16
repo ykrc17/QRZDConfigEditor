@@ -4,7 +4,7 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 
 abstract class ListAdapter<VH : ViewModel<E>, E> : RecyclerView.Adapter<VH> {
-    private val list = arrayListOf<E>()
+    protected val list = arrayListOf<E>()
     protected val context: Context
 
     constructor(context: Context) : super() {

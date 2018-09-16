@@ -17,4 +17,16 @@ class CGListAdapter : ListAdapter<CGViewModel, CGEntity> {
         return CGViewModel(view, listener)
     }
 
+    fun indexOf(id: String?): Int {
+        if (id == null) {
+            return -1
+        }
+        list.forEachIndexed { index, entity ->
+            if (entity.id == id) {
+                return index
+            }
+        }
+        return -1
+    }
+
 }

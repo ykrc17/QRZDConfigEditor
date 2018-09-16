@@ -1,16 +1,14 @@
 package com.ykrc17.game.qrzdconfigeditor
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
-import android.widget.*
+import android.widget.CompoundButton
+import android.widget.Toast
 import com.ykrc17.game.qrzdconfigeditor.config.QRZDConfig
 import com.ykrc17.game.qrzdconfigeditor.layout.ActivityMainBinding
 import java.util.*
@@ -27,9 +25,6 @@ class MainActivity : BaseActivity(), MainView {
 
         presenter = MainPresenter(this)
         requestPermissions(presenter::readConfig)
-        bindings.ll_ending.setOnClickListener {
-            startActivityForResult(CGListActivity::class.java, null, ::onSelectCG)
-        }
     }
 
     private var endingListener = object : TextWatcher {
@@ -61,6 +56,12 @@ class MainActivity : BaseActivity(), MainView {
             et_ending.removeTextChangedListener(endingListener)
             et_ending.setText(config.ending.toString())
             et_ending.addTextChangedListener(endingListener)
+
+            btn_go_cg_list.setOnClickListener {
+                val args = Bundle()
+                args.putString("id", et_ending.text.toString())
+                startActivityForResult(CGListActivity::class.java, args, ::onSelectCG)
+            }
 
             if (BuildConfig.DEBUG) {
                 tv_debug.text = config.originString

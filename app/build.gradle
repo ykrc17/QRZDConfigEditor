@@ -48,7 +48,7 @@ dependencies {
 }
 
 tasks.whenTaskAdded {
-    if (it.name == "assembleRelease") {
+    if (it.name == "packageRelease") {
         it.doLast {
             copy {
                 from("$buildDir/outputs/apk/release") {

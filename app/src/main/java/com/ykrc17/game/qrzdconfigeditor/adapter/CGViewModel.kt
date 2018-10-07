@@ -1,7 +1,10 @@
 package com.ykrc17.game.qrzdconfigeditor.adapter
 
+import android.content.res.Resources
 import android.view.View
+import android.view.ViewGroup
 import com.ykrc17.game.qrzdconfigeditor.layout.CgListItemBinding
+import kotlin.math.roundToInt
 
 class CGViewModel : ViewModel<CGEntity> {
     private val binding: CgListItemBinding
@@ -15,5 +18,9 @@ class CGViewModel : ViewModel<CGEntity> {
             tv_id.text = item.id
             tv_name.text = item.name
         }
+
+        (itemView.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin = if (item.isLast) {
+            (Resources.getSystem().displayMetrics.density * 20).roundToInt()
+        } else 0
     }
 }

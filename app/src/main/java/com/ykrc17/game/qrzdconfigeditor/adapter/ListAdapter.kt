@@ -20,10 +20,10 @@ abstract class ListAdapter<VH : ViewModel<E>, E> : RecyclerView.Adapter<VH> {
     }
 
     final override fun onBindViewHolder(holder: VH, position: Int) {
-        onBindViewHolder(holder, list[position])
+        onBindViewHolder(holder, list[position], position)
     }
 
-    fun onBindViewHolder(holder: VH, item: E) {
+    open fun onBindViewHolder(holder: VH, item: E, position: Int) {
         holder.bind(item)
     }
 }

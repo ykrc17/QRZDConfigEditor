@@ -17,6 +17,11 @@ class CGListAdapter : ListAdapter<CGViewModel, CGEntity> {
         return CGViewModel(view, listener)
     }
 
+    override fun onBindViewHolder(holder: CGViewModel, item: CGEntity, position: Int) {
+        item.isLast = position == itemCount - 1
+        holder.bind(item)
+    }
+
     fun setSelectedItem(id: String?): Int {
         if (id == null) {
             return -1

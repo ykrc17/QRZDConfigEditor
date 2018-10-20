@@ -28,7 +28,7 @@ class CGListAdapter : ListAdapter<CGViewModel, CGEntity> {
         }
         list.forEachIndexed { index, entity ->
             if (entity.id == id) {
-                entity.name += "√"
+                entity.name += " (√)"
                 notifyItemChanged(index)
                 return index
             }

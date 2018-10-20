@@ -1,11 +1,20 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:textColor">#4a5050</item>
+        <item name="android:windowBackground">@color/default_windowBackground</item>
+    </style>
+
+    <style name="AppTheme_Halloween" parent="Theme.AppCompat">
+        <item name="colorPrimary">#f1861e</item>
+        <item name="colorPrimaryDark">#f1861e</item>
+        <item name="colorAccent">#f1861e</item>
+        
+        <item name="android:windowBackground">@color/halloween_windowBackground</item>
     </style>
 
 </resources>

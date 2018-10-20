@@ -17,6 +17,9 @@ class CGViewModel : ViewModel<CGEntity> {
         binding.apply {
             tv_id.text = item.id
             tv_name.text = item.name
+
+            tv_id.paint.isFakeBoldText = item.isEnding
+            tv_name.paint.isFakeBoldText = item.isEnding
         }
 
         (itemView.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin = if (item.isLast) {

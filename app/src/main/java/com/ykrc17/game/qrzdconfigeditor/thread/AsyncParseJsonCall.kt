@@ -8,9 +8,20 @@ class AsyncParseJsonCall : AsyncCall<JSONObject, List<CGEntity>> {
     constructor(callback: Consumer<List<CGEntity>>) : super(callback)
 
     override fun doInBackground(params: JSONObject): List<CGEntity> {
+        val endingList = arrayListOf<CGEntity>()
         val result = arrayListOf<CGEntity>()
-        params.keys().forEach {
-            result.add(CGEntity(it, params.optString(it)))
+        params.optJSONObject("ending")?.apply {
+            keys().forEach { cgKey ->
+                val entity = CGEntity(cgKey, optString(cgKey), true)
+                endingList.add(entity)
+                result.add(entity)
+            }
+        }
+        params.getJSONObject("cg")?.apply {
+            keys().forEach { cgKey ->
+                val cgName = optString(cgKey)
+                result.add(CGEntity(cgKey, cgName, endingList.any { it.name == cgName }))
+            }
         }
         return result
     }

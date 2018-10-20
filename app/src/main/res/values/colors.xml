@@ -3,4 +3,7 @@
     <color name="colorPrimary">#d83c76</color>
     <color name="colorPrimaryDark">#d83c76</color>
     <color name="colorAccent">#d83c76</color>
+    <color name="default_windowBackground">#fafafa</color>
+
+    <color name="halloween_windowBackground">#4f4d4e</color>
 </resources>

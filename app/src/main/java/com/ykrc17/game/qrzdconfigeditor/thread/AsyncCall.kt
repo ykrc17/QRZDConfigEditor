@@ -5,7 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import com.ykrc17.util.function.Consumer
 
-abstract class AsyncCall<Params, Result> : Consumer<Params> {
+abstract class AsyncCall<Param, Result> : Consumer<Param> {
     private val handler = Handler(Looper.getMainLooper())
     private val callback: Consumer<Result>
 
@@ -13,11 +13,11 @@ abstract class AsyncCall<Params, Result> : Consumer<Params> {
         this.callback = callback
     }
 
-    override fun accept(params: Params) {
-        execute(params)
+    override fun accept(param: Param) {
+        execute(param)
     }
 
-    fun execute(params: Params) {
+    fun execute(params: Param) {
         AsyncTask.THREAD_POOL_EXECUTOR.execute {
             val result = doInBackground(params)
             if (callback is MainThreadConsumer) {
@@ -28,5 +28,5 @@ abstract class AsyncCall<Params, Result> : Consumer<Params> {
         }
     }
 
-    abstract fun doInBackground(params: Params): Result
+    abstract fun doInBackground(params: Param): Result
 }
